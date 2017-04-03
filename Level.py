@@ -6,11 +6,11 @@ from Meatball import *
 from specialmeatball import *
 
 class Level():
-    def __init__(self, levelFile, tileSize=30):
+    def __init__(self, levelFile, tileSize=10):
         self.walls = []
         self.meatballs = []
         self.tileSize = tileSize
-        self.player = None
+        self.player = tileSize = 10) 
         self.loadLevel(levelFile)
     
     def unloadLevel(self):
@@ -54,12 +54,12 @@ class Level():
                                   
                 if c == "b":
                     self.player2 = AIPlayer (5,
-                                        [x*self.tileSize + self.tileSize/.5,
-                                         y*self.tileSize + self.tileSize/.5])
+                                        [x*self.tileSize + self.tileSize/.2,
+                                         y*self.tileSize + self.tileSize/.2])
                 if c == "p":
                     self.player = Player (5,  
-                                        [x*self.tileSize + self.tileSize/.5,
-                                         y*self.tileSize + self.tileSize/.5])
+                                        [x*self.tileSize + self.tileSize/.2,
+                                         y*self.tileSize + self.tileSize/.2])
                 if c == "o":
                     self.meatballs += [Meatball([x*self.tileSize + self.tileSize/2,
                                            y*self.tileSize + self.tileSize/2],
