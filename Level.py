@@ -10,7 +10,7 @@ class Level():
         self.walls = []
         self.meatballs = []
         self.tileSize = tileSize
-        self.player = tileSize = 10) 
+        self.playerSize = tileSize = 10
         self.loadLevel(levelFile)
     
     def unloadLevel(self):
@@ -54,8 +54,8 @@ class Level():
                                   
                 if c == "b":
                     self.player2 = AIPlayer (5,
-                                        [x*self.tileSize + self.tileSize/.2,
-                                         y*self.tileSize + self.tileSize/.2])
+                                        [x*self.tileSize + self.tileSize/10,
+                                         y*self.tileSize + self.tileSize/10])
                 if c == "p":
                     self.player = Player (5,  
                                         [x*self.tileSize + self.tileSize/.2,
