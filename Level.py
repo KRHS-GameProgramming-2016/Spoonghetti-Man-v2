@@ -6,7 +6,7 @@ from Meatball import *
 from specialmeatball import *
 
 class Level():
-    def __init__(self, levelFile, tileSize=10):
+    def __init__(self, levelFile, tileSize=44):
         self.walls = []
         self.meatballs = []
         self.tileSize = tileSize
