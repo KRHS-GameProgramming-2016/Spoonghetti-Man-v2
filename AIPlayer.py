@@ -10,8 +10,6 @@ class AIPlayer(Player):
                        pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(13).png"), size),
                        pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(14).png"), size),
                        pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(15).png"), size),
-                       #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(16).png"), size),
-                       #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(15).png"), size),
                        pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(14).png"), size),
                        pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(13).png"), size),
                        pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(12).png"), size),
