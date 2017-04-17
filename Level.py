@@ -1,6 +1,8 @@
 import pygame, sys, math
 from Player  import *
 from AIPlayer  import *
+from Enemy import *
+from ShootingEnemy import *
 from Wall import *
 from Meatball import *
 from specialmeatball import *
@@ -60,6 +62,17 @@ class Level():
                     self.player = Player (5,  
                                         [x*self.tileSize + self.tileSize/.2,
                                          y*self.tileSize + self.tileSize/.2])
+                if c == "x":
+                    self.enemies = [Enemy(2,
+                                       [x*self.tileSize + self.tileSize/2,
+                                        y*self.tileSize + self.tileSize/2],
+                                       self.tileSize)
+                if c == "y":
+                    self.enemies = [ShootingEnemy(1,
+                                       [x*self.tileSize + self.tileSize/2,
+                                        y*self.tileSize + self.tileSize/2],
+                                       self.tileSize)
+                                  ]
                 if c == "o":
                     self.meatballs += [Meatball([x*self.tileSize + self.tileSize/2,
                                            y*self.tileSize + self.tileSize/2],

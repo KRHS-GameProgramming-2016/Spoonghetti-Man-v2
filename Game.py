@@ -2,6 +2,8 @@ import pygame, sys, math, random
 from Meatball import *
 from Level import *
 from LevelIndicator import *
+from Enemy import *
+from ShootingEnemy import *
 from Player import *
 from AIPlayer import *
 from specialmeatball import *
@@ -32,13 +34,11 @@ while True:
     player = level.player
     player2 = level.player2
     walls = level.walls
-    #goal = level.goal
     meatballs = level.meatballs
     timer = Timer([132, 50])
     score = Score([100, height - 30])
-    score2 = Score([width - 100, height - 30])
-    #print len(meatballs)
-    levelIndicator = LevelIndicator([width-10, 16], lev)
+    #score2 = Score([width - 100, height - 30])
+    #levelIndicator = LevelIndicator([width-10, 16], lev)
     while len(meatballs)>0:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
@@ -92,9 +92,9 @@ while True:
             if player.bounceMeatball(meatball):
                 meatball.kill()
                 score.setValue(player.points)
-            if player2.bounceMeatball(meatball):
-                score2.setValue(player2.points)
-                meatball.kill()
+            #if player2.bounceMeatball(meatball):
+               # score2.setValue(player2.points)
+               # meatball.kill()
                 
         for meatball in meatballs:
             if not meatball.living:
@@ -112,26 +112,26 @@ while True:
         screen.blit(player2.image, player2.rect)
         screen.blit(timer.image, timer.rect)
         screen.blit(score.image, score.rect)
-        screen.blit(score2.image, score2.rect)
-        screen.blit(levelIndicator.image, levelIndicator.rect)
+        #screen.blit(score2.image, score2.rect)
+        #screen.blit(levelIndicator.image, levelIndicator.rect)
         pygame.display.flip()
         clock.tick(100)
     level.unloadLevel()
     lev += 1
     scoreScreen = True
     
-    gamefont = pygame.font.Font("rsc/Fonts/comic sans/comic.ttf", 51)
+    #gamefont = pygame.font.Font("rsc/Fonts/comic sans/comic.ttf", 51)
     
     gamerect = gameimage.get_rect(center = [width/2, height/2])
     
-    if score > score2:
-        bgImage = pygame.image.load ("Background/SPOONERRRR.png")
-        gameimage = gamefont.render("Spoonghettiman Wins :( ", True, (100,0,00))
-        bgRect = bgImage.get_rect()
-    else:
-        bgImage = pygame.image.load ("Background/SPOONERRRR.png")
-        gameimage = gamefont.render("Spooners Inner Demons Were Defeated!", True, (100,0,00))
-        bgRect = bgImage.get_rect()
+    #if score > score2:
+        #bgImage = pygame.image.load ("Background/SPOONERRRR.png")
+        #gameimage = gamefont.render("Spoonghettiman Wins :( ", True, (100,0,00))
+        #bgRect = bgImage.get_rect()
+    #else:
+        #bgImage = pygame.image.load ("Background/SPOONERRRR.png")
+        #gameimage = gamefont.render("Spooners Inner Demons Were Defeated!", True, (100,0,00))
+        #bgRect = bgImage.get_rect()
         
     gamerect = gameimage.get_rect(center = [width/2, height/2])
 
