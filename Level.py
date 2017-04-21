@@ -11,13 +11,15 @@ class Level():
     def __init__(self, levelFile, tileSize=44):
         self.walls = []
         self.meatballs = []
+        self.enemies = []
         self.tileSize = tileSize
         self.playerSize = tileSize = 10
         self.loadLevel(levelFile)
     
     def unloadLevel(self):
         self.walls = []
-      
+        self.player = []
+        self.enemySpawn = []
                
     def loadLevel(self, levelFile):        
         f = open("rsc/levels/"+levelFile, 'r')
@@ -52,7 +54,7 @@ class Level():
                     self.walls += [Wall([x*self.tileSize + self.tileSize/7,
                                         y*self.tileSize + self.tileSize/7],
                                        self.tileSize)
-                                  ]
+                                    ]
                                   
                 if c == "b":
                     self.player2 = AIPlayer (5,
@@ -62,6 +64,21 @@ class Level():
                     self.player = Player (5,  
                                         [x*self.tileSize + self.tileSize/.2,
                                          y*self.tileSize + self.tileSize/.2])
+                                    
+                if c in "x" :       #Pew
+                    self.enemies += [Enemy(2,
+                                       [x*self.tileSize + self.tileSize/2,
+                                        y*self.tileSize + self.tileSize/2],
+                                       self.tileSize)
+                                  ]
+
+                if c in "y" :       #Beatbox
+                    self.enemies += [ShootingEnemy(1,
+                                       [x*self.tileSize + self.tileSize/2,
+                                        y*self.tileSize + self.tileSize/2],
+                                       self.tileSize)
+                                  ]
+                            
                 if c == "o":
                     self.meatballs += [Meatball([x*self.tileSize + self.tileSize/2,
                                            y*self.tileSize + self.tileSize/2],
