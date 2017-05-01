@@ -1,10 +1,12 @@
 import pygame, sys, math, random
+
 from Meatball import *
 from Level import *
 from LevelIndicator import *
 from Enemy import *
 from ShootingEnemy import *
 from Player import *
+from Title import *
 from AIPlayer import *
 from specialmeatball import *
 from spicymeatball import *
@@ -25,6 +27,20 @@ screen = pygame.display.set_mode(size)
 bgColor = r,g,b = 0, 0, 0
 
 lev = 1
+
+while True:
+    menu = True
+    Title("rsc/Titlescreen.png", size)
+    while menu:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    menu = False
+                if event.key == pygame.K_2:
+                    sys.exit()
+        
+                    timer.update()
 
 while True:
     level = Level("level"+str(lev)+".lvl")                                                                                                                                                                                             
@@ -87,6 +103,7 @@ while True:
             player2.bounceWall(wall)
             
         timer.update()
+        
          
         for meatball in meatballs:
             if player.bounceMeatball(meatball):
