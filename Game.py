@@ -25,31 +25,27 @@ screen = pygame.display.set_mode(size)
 
 bgColor = r,g,b = 0, 0, 0
 
+
+all = pygame.sprite.OrderedUpdates()
+players = pygame.sprite.Group()
+meatballs = pygame.sprite.Group()
+walls = pygame.sprite.Group()
+
+Player.containers = all, players
+Meatball.containers = all, meatballs
+Wall.containers = all, walls
+
+
 lev = 1
 
-#while True:
-    #menu = True
-    #Title("rsc/Titlescreen.png", size)
-    #while menu:
-        #for event in pygame.event.get():
-            #if event.type == pygame.QUIT: sys.exit()
-            #if event.type == pygame.KEYDOWN:
-                #if event.key == pygame.K_RETURN:
-                    #menu = False
-                #if event.key == pygame.K_2:
-                    #sys.exit()
-        
-                    #timer.update()
 
 while True:
     level = Level("level"+str(lev)+".lvl")                                                                                                                                                                                             
     print level
     bgImage = pygame.image.load("Background/Floor.png").convert()
     bgRect = bgImage.get_rect() 
-    player = level.player
-    player2 = level.player2
-    walls = level.walls
-    meatballs = level.meatballs
+    player = players.sprites()[0]
+    player2 = players.sprites()[1]
     timer = Timer([132, 50])
     score = Score([100, height - 30])
     #score2 = Score([width - 100, height - 30])
@@ -97,11 +93,14 @@ while True:
         print player.speed
         player.bounceScreen(size)
         player2.bounceScreen(size)
-        for wall in walls:
+        
+        pygame.sprite.groupcollide(meatballs, walls, True, False)
+        for wall in walls.sprites():
+            wall.kill()
             player.bounceWall(wall)
             player2.bounceWall(wall)
             
-        timer.update()
+            timer.update()
         
          
         for meatball in meatballs:
@@ -135,6 +134,10 @@ while True:
     level.unloadLevel()
     lev += 1
     scoreScreen = True
+    
+    
+
+        
     
     #gamefont = pygame.font.Font("rsc/Fonts/comic sans/comic.ttf", 51)
     
