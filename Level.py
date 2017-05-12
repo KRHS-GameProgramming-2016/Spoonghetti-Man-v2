@@ -9,17 +9,12 @@ from specialmeatball import *
 
 class Level():
     def __init__(self, levelFile, tileSize=44):
-        self.walls = []
-        self.meatballs = []
-        self.enemies = []
         self.tileSize = tileSize
         self.playerSize = tileSize = 10
         self.loadLevel(levelFile)
     
     def unloadLevel(self):
-        self.walls = []
-        self.player = []
-        self.enemySpawn = []
+        pass
                
     def loadLevel(self, levelFile):        
         f = open("rsc/levels/"+levelFile, 'r')
@@ -51,50 +46,48 @@ class Level():
         for y,line in enumerate(lines):
             for x,c in enumerate(line):
                 if c == '#':
-                    self.walls += [Wall([x*self.tileSize + self.tileSize/7,
+                    Wall([x*self.tileSize + self.tileSize/7,
                                         y*self.tileSize + self.tileSize/7],
                                        self.tileSize)
-                                    ]
                                   
                 if c == "b":
-                    self.player2 = AIPlayer (5,
+                    a =AIPlayer (5,
                                         [x*self.tileSize + self.tileSize/10,
                                          y*self.tileSize + self.tileSize/10])
+                    print "ai", a.containers
                 if c == "p":
-                    self.player = Player (5,  
+                    p =Player (5,  
                                         [x*self.tileSize + self.tileSize/.2,
                                          y*self.tileSize + self.tileSize/.2])
+                    print "play",p.containers   
                                     
                 if c in "x" :       #Pew
-                    self.enemies += [Enemy(2,
+                    Enemy(2,
                                        [x*self.tileSize + self.tileSize/2,
                                         y*self.tileSize + self.tileSize/2],
                                        self.tileSize)
-                                  ]
 
                 if c in "y" :       #Beatbox
-                    self.enemies += [ShootingEnemy(1,
+                    ShootingEnemy(1,
                                        [x*self.tileSize + self.tileSize/2,
                                         y*self.tileSize + self.tileSize/2],
                                        self.tileSize)
-                                  ]
+                                  
                             
                 if c == "o":
-                    self.meatballs += [Meatball([x*self.tileSize + self.tileSize/2,
+                    Meatball([x*self.tileSize + self.tileSize/2,
                                            y*self.tileSize + self.tileSize/2],
                                           self.tileSize)
-                                       ]
+
                 if c == "s":
-                    self.meatballs += [Specialmeatball([x*self.tileSize + self.tileSize/2,
+                    Specialmeatball([x*self.tileSize + self.tileSize/2,
                                            y*self.tileSize + self.tileSize/2],
                                           self.tileSize)
-                                ]
+                                
                 #if c == "$":
-                    #self.goal = Goal([x*self.tileSize + self.tileSize/2,
+                    #Goal([x*self.tileSize + self.tileSize/2,
                                           #y*self.tileSize + self.tileSize/2],
                                           #self.tileSize)
-                   
-                    print "MEAATBALL!!!!"
 
         
 #Level("level1.lvl")

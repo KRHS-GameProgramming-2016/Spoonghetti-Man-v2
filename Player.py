@@ -1,9 +1,8 @@
 import pygame, sys, math
-from Meatball import *
 
-class Player(Meatball):
+class Player(pygame.sprite.Sprite):
     def __init__(self, maxSpeed =5 , pos=[10,10]):
-        Meatball.__init__(self, pos, None)
+        pygame.sprite.Sprite.__init__(self, self.containers)
         size = [39,39]
         self.maxSpeed = maxSpeed     
         self.images = [pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF.png"), size),
@@ -21,14 +20,21 @@ class Player(Meatball):
                       ]
         self.frame = 0
         self.image = self.images[self.frame]
-        self.rect = self.image.get_rect(center = self.rect.center)
+        self.rect = self.image.get_rect(center = pos)
+        self.speedx = 0
+        self.speedy = 0
+        self.speed = [self.speedx, self.speedy]
+        self.radius = self.rect.width/2 -1
         self.maxFrame = len(self.images) - 1
         self.animationTimer = 0
         self.animationTimerMax = .001 * 100 #seconds * 60 fps
         self.points = 0
         
     def move(self):
-        Meatball.move(self)
+        self.didBounceX = False
+        self.didBounceY = False
+        self.speed = [self.speedx, self.speedy]
+        self.rect = self.rect.move(self.speed)
         self.animate()
         
     def animate(self):

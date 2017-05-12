@@ -1,17 +1,17 @@
 import pygame, sys, math, random
 from Meatball import *
 from Level import *
-from Enemy import *
-from ShootingEnemy import *
+#from Enemy import *
+#from ShootingEnemy import *
 #from LevelIndicator import *
 from Player import *
-from Title import *
+#from Title import *
 from AIPlayer import *
 from specialmeatball import *
-from spicymeatball import *
+#from spicymeatball import *
 from Wall import*  
 from Timer import*
-from Spoonghettimonster import *
+#from Spoonghettimonster import *
 #from LevelIndicator import *
 #from Goal import *
 pygame.init()
@@ -27,12 +27,14 @@ bgColor = r,g,b = 0, 0, 0
 
 
 all = pygame.sprite.OrderedUpdates()
-players = pygame.sprite.Group()
+thePlayers = pygame.sprite.Group()
 meatballs = pygame.sprite.Group()
 walls = pygame.sprite.Group()
 
-Player.containers = all, players
+Player.containers = all, thePlayers
+AIPlayer.containers = all, thePlayers
 Meatball.containers = all, meatballs
+Specialmeatball.containers = all, meatballs
 Wall.containers = all, walls
 
 
@@ -40,12 +42,20 @@ lev = 1
 
 
 while True:
-    level = Level("level"+str(lev)+".lvl")                                                                                                                                                                                             
-    print level
+    level = Level("level"+str(lev)+".lvl")     
     bgImage = pygame.image.load("Background/Floor.png").convert()
     bgRect = bgImage.get_rect() 
-    player = players.sprites()[0]
-    player2 = players.sprites()[1]
+    print len(thePlayers.sprites()), thePlayers.sprites()
+    for s in all.sprites():
+        #print s, s.containers
+        #print type(s)
+        if "Player" in str(s):
+            for c in s.containers:
+                print "\t",c
+                for cs in c.sprites():
+                    print "\t\t", cs
+    player = thePlayers.sprites()[0]
+    player2 = thePlayers.sprites()[1]
     timer = Timer([132, 50])
     score = Score([100, height - 30])
     #score2 = Score([width - 100, height - 30])
