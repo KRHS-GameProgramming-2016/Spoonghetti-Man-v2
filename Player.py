@@ -29,6 +29,7 @@ class Player(pygame.sprite.Sprite):
         self.animationTimer = 0
         self.animationTimerMax = .001 * 100 #seconds * 60 fps
         self.points = 0
+        self.kind = "human"
         
     def move(self):
         self.didBounceX = False
@@ -69,6 +70,10 @@ class Player(pygame.sprite.Sprite):
     
     def goMouse(self, pos):
         self.rect.center = pos
+        
+    def update(self, size):
+        self.move()
+        self.bounceScreen(size)
                
     def bounceScreen(self, size):
         width = size[0]
@@ -103,3 +108,11 @@ class Player(pygame.sprite.Sprite):
                 self.speedy = 0
                 self.didBounceY = True
                     
+    def dist(self, pt):
+        x1 = self.rect.center[0]
+        y1 = self.rect.center[1]
+        x2 = pt[0]
+        y2 = pt[1]
+        xDiff = x1 - x2
+        yDiff = y1 - y2
+        return math.sqrt(xDiff**2 + yDiff**2)  

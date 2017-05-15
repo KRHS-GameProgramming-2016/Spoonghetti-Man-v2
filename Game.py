@@ -54,13 +54,16 @@ while True:
                 print "\t",c
                 for cs in c.sprites():
                     print "\t\t", cs
-    player = thePlayers.sprites()[0]
-    player2 = thePlayers.sprites()[1]
+    for p in thePlayers.sprites():
+        if p.kind == "human":
+            player = p
+        else:
+            player2 = p
     timer = Timer([132, 50])
     score = Score([100, height - 30])
     #score2 = Score([width - 100, height - 30])
     #levelIndicator = LevelIndicator([width-10, 16], lev)
-    while len(meatballs)>0:
+    while len(meatballs.sprites())>0:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
             if event.type == pygame.KEYDOWN:
@@ -97,50 +100,33 @@ while True:
                     #player2.go("stop right")
                 #if event.key == pygame.K_a:
                     #player2.go("stop left")
-
-        player.move()
-        player2.move()
-        print player.speed
-        player.bounceScreen(size)
-        player2.bounceScreen(size)
+    
         
-        pygame.sprite.groupcollide(meatballs, walls, True, False)
-        for wall in walls.sprites():
-            wall.kill()
-            player.bounceWall(wall)
-            player2.bounceWall(wall)
-            
-            timer.update()
+        
+        all.update(size)
+        
+        playersHitsWalls = pygame.sprite.groupcollide(thePlayers, walls, False, False)
+        playersHitsMeatballs = pygame.sprite.groupcollide(thePlayers, meatballs, False, True)
+        
+        for p in playersHitsWalls:
+            for wall in playersHitsWalls[p]:
+                p.bounceWall(wall)
+
+        for p in playersHitsMeatballs:
+            for wall in playersHitsMeatballs[p]:
+                print "HIT"
         
          
-        for meatball in meatballs:
-            if player.bounceMeatball(meatball):
-                meatball.kill()
-                score.setValue(player.points)
-            #if player2.bounceMeatball(meatball):
-               # score2.setValue(player2.points)
-               # meatball.kill()
-                
-        for meatball in meatballs:
-            if not meatball.living:
-                meatballs.remove(meatball)
+        
                 
         
         bgColor = r,g,b
         screen.fill(bgColor)
         screen.blit(bgImage, bgRect)
-        for meatball in meatballs:
-            screen.blit(meatball.image, meatball.rect)
-        for wall in walls:
-            screen.blit(wall.image, wall.rect)
-        screen.blit(player.image, player.rect)
-        screen.blit(player2.image, player2.rect)
-        screen.blit(timer.image, timer.rect)
-        screen.blit(score.image, score.rect)
-        #screen.blit(score2.image, score2.rect)
-        #screen.blit(levelIndicator.image, levelIndicator.rect)
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
         pygame.display.flip()
-        clock.tick(100)
+        clock.tick(60)
     level.unloadLevel()
     lev += 1
     scoreScreen = True

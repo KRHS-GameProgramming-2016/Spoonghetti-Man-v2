@@ -20,11 +20,13 @@ class AIPlayer(Player):
         self.rect = self.image.get_rect(center = self.rect.center)
         self.maxFrame = len(self.images) - 1
         self.goRandomDirection()
+        self.kind = "AI"
         
         
-    def update(self):
+    def update(self, size):
         if random.randint(0,75) == 0:
             self.goRandomDirection()
+        Player.update(self, size)
             
     def PlayerCollide(self, other):
         if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
