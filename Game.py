@@ -18,8 +18,8 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
-width = 937 
-height = 680
+width = 24*44 
+height = 17*44
 size = width, height
 screen = pygame.display.set_mode(size)
 
@@ -38,22 +38,14 @@ Specialmeatball.containers = all, meatballs
 Wall.containers = all, walls
 
 
-lev = 1
+levx = 1
+levy = 1
 
 
 while True:
-    level = Level("level"+str(lev)+".lvl")     
+    level = Level(str(levx)+str(levy)+".lvl")     
     bgImage = pygame.image.load("Background/Floor.png").convert()
     bgRect = bgImage.get_rect() 
-    print len(thePlayers.sprites()), thePlayers.sprites()
-    for s in all.sprites():
-        #print s, s.containers
-        #print type(s)
-        if "Player" in str(s):
-            for c in s.containers:
-                print "\t",c
-                for cs in c.sprites():
-                    print "\t\t", cs
     for p in thePlayers.sprites():
         if p.kind == "human":
             player = p
@@ -63,7 +55,7 @@ while True:
     score = Score([100, height - 30])
     #score2 = Score([width - 100, height - 30])
     #levelIndicator = LevelIndicator([width-10, 16], lev)
-    while len(meatballs.sprites())>0:
+    while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
             if event.type == pygame.KEYDOWN:
@@ -101,8 +93,6 @@ while True:
                 #if event.key == pygame.K_a:
                     #player2.go("stop left")
     
-        
-        
         all.update(size)
         
         playersHitsWalls = pygame.sprite.groupcollide(thePlayers, walls, False, False)
@@ -115,11 +105,7 @@ while True:
         for p in playersHitsMeatballs:
             for wall in playersHitsMeatballs[p]:
                 print "HIT"
-        
-         
-        
                 
-        
         bgColor = r,g,b
         screen.fill(bgColor)
         screen.blit(bgImage, bgRect)
@@ -127,39 +113,3 @@ while True:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
-    level.unloadLevel()
-    lev += 1
-    scoreScreen = True
-    
-    
-
-        
-    
-    #gamefont = pygame.font.Font("rsc/Fonts/comic sans/comic.ttf", 51)
-    
-    gamerect = gameimage.get_rect(center = [width/2, height/2])
-    
-    #if score > score2:
-        #bgImage = pygame.image.load ("Background/SPOONERRRR.png")
-        #gameimage = gamefont.render("Spoonghettiman Wins :( ", True, (100,0,00))
-        #bgRect = bgImage.get_rect()
-    #else:
-        #bgImage = pygame.image.load ("Background/SPOONERRRR.png")
-        #gameimage = gamefont.render("Spooners Inner Demons Were Defeated!", True, (100,0,00))
-        #bgRect = bgImage.get_rect()
-        
-    gamerect = gameimage.get_rect(center = [width/2, height/2])
-
-    while scoreScreen:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT: sys.exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN:
-                    scoreScreen = False
-        
-        bgColor = r,g,b
-        screen.fill(bgColor)
-        screen.blit(bgImage, bgRect)
-        screen.blit(gameimage, gamerect)
-        pygame.display.flip()
-        clock.tick(100)
