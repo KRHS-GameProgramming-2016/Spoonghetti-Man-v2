@@ -15,11 +15,11 @@ class Meatball(pygame.sprite.Sprite):
         self.didBounceY = False
         self.points = 1
         self.living = True
-        
-    def kill(self):
-        self.living = False
 
-        
+    def update(self, size):
+        self.move()
+        self.bounceScreen(size)
+    
     def move(self):
         self.didBounceX = False
         self.didBounceY = False

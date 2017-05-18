@@ -4,7 +4,7 @@ class Score():
     def __init__(self, pos):
         self.value = 0
         #http://www.1001fonts.com/bustin-jieber-font.html
-        self.font = pygame.font.Font("rsc/Fonts/comic sans/comic.ttf", 51)
+        self.font = pygame.font.Font("rsc/Fonts/Courier font/coure.fon", 51)
         self.image = self.font.render("Score: " + str(self.value), True, (100,0,00))
         self.rect = self.image.get_rect(center = pos)
     

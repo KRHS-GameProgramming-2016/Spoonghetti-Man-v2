@@ -3,20 +3,20 @@ import pygame, sys, math
 class Player(pygame.sprite.Sprite):
     def __init__(self, maxSpeed =5 , pos=[10,10]):
         pygame.sprite.Sprite.__init__(self, self.containers)
-        size = [39,39]
+        size = [60,60]
         self.maxSpeed = maxSpeed     
-        self.images = [pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF.png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(2).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(3.1).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(4).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(5).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(6).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(7).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(6).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(5).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(4).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(3.1).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(2).png"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/ball/Spoonerk.png"), size),
+                       #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(2).png"), size),
+                       #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(3.1).png"), size),
+                       #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(4).png"), size),
+                       #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(5).png"), size),
+                       #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(6).png"), size),
+                       #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(7).png"), size),
+                       #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(6).png"), size),
+                       #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(5).png"), size),
+                       #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(4).png"), size),
+                       #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(3.1).png"), size),
+                       #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(2).png"), size),
                       ]
         self.frame = 0
         self.image = self.images[self.frame]
@@ -29,6 +29,7 @@ class Player(pygame.sprite.Sprite):
         self.animationTimer = 0
         self.animationTimerMax = .001 * 100 #seconds * 60 fps
         self.points = 0
+        self.kind = "human"
         
     def move(self):
         self.didBounceX = False
@@ -69,6 +70,10 @@ class Player(pygame.sprite.Sprite):
     
     def goMouse(self, pos):
         self.rect.center = pos
+        
+    def update(self, size):
+        self.move()
+        self.bounceScreen(size)
                
     def bounceScreen(self, size):
         width = size[0]
@@ -103,3 +108,11 @@ class Player(pygame.sprite.Sprite):
                 self.speedy = 0
                 self.didBounceY = True
                     
+    def dist(self, pt):
+        x1 = self.rect.center[0]
+        y1 = self.rect.center[1]
+        x2 = pt[0]
+        y2 = pt[1]
+        xDiff = x1 - x2
+        yDiff = y1 - y2
+        return math.sqrt(xDiff**2 + yDiff**2)  

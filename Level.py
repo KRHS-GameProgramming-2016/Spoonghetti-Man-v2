@@ -6,11 +6,12 @@ from ShootingEnemy import *
 from Wall import *
 from Meatball import *
 from specialmeatball import *
+from LevelChangeBlock import *
 
 class Level():
     def __init__(self, levelFile, tileSize=44):
         self.tileSize = tileSize
-        self.playerSize = tileSize = 10
+        self.playerSize = tileSize
         self.loadLevel(levelFile)
     
     def unloadLevel(self):
@@ -46,19 +47,24 @@ class Level():
         for y,line in enumerate(lines):
             for x,c in enumerate(line):
                 if c == '#':
-                    Wall([x*self.tileSize + self.tileSize/7,
-                                        y*self.tileSize + self.tileSize/7],
+                    Wall([x*self.tileSize + self.tileSize/2,
+                                        y*self.tileSize + self.tileSize/2],
                                        self.tileSize)
+                if c == 'E' or c == 'W' or c == 'S' or c == 'N':
+                    LevelChangeBlock([x*self.tileSize + self.tileSize/2,
+                                        y*self.tileSize + self.tileSize/2],
+                                       self.tileSize,
+                                       c)
                                   
                 if c == "b":
                     a =AIPlayer (5,
-                                        [x*self.tileSize + self.tileSize/10,
-                                         y*self.tileSize + self.tileSize/10])
+                                        [x*self.tileSize + self.tileSize/2,
+                                         y*self.tileSize + self.tileSize/2])
                     print "ai", a.containers
                 if c == "p":
                     p =Player (5,  
-                                        [x*self.tileSize + self.tileSize/.2,
-                                         y*self.tileSize + self.tileSize/.2])
+                                        [x*self.tileSize + self.tileSize/2,
+                                         y*self.tileSize + self.tileSize/2])
                     print "play",p.containers   
                                     
                 if c in "x" :       #Pew

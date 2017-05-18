@@ -4,7 +4,7 @@ from Player import *
 class AIPlayer(Player):
     def __init__(self, maxSpeed =5 , pos=[10,10]):
         Player.__init__(self, maxSpeed, pos)
-        size = [30,30]
+        size = [65,65]
         self.images = [pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(11).png"), size),
                        pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(12).png"), size),
                        pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(13).png"), size),
@@ -20,11 +20,13 @@ class AIPlayer(Player):
         self.rect = self.image.get_rect(center = self.rect.center)
         self.maxFrame = len(self.images) - 1
         self.goRandomDirection()
+        self.kind = "AI"
         
         
-    def update(self):
+    def update(self, size):
         if random.randint(0,75) == 0:
             self.goRandomDirection()
+        Player.update(self, size)
             
     def PlayerCollide(self, other):
         if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
