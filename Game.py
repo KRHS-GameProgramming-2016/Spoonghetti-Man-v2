@@ -11,7 +11,7 @@ from specialmeatball import *
 #from spicymeatball import *
 from Wall import*  
 from Timer import*
-#from Score import*
+from Score import*
 #from Spoonghettimonster import *
 #from LevelIndicator import *
 #from Goal import *
@@ -46,7 +46,7 @@ levy = 1
 
 
 while True:
-    level = Level(str(levx)+str(levy)+".lvl", tileSize)     
+    level = Level(str(levy)+str(levx)+".lvl", tileSize)     
     bgImage = pygame.image.load("Background/Floor.png").convert()
     bgRect = bgImage.get_rect() 
     for p in thePlayers.sprites():
@@ -118,7 +118,7 @@ while True:
                 pPos = [0+tileSize+tileSize/2+5, player.rect.center[1]]
                 for s in all.sprites():
                     s.kill()
-                level = Level(str(levx)+str(levy)+".lvl", tileSize) 
+                level = Level(str(levy)+str(levx)+".lvl", tileSize) 
                 print str(levx)+str(levy)+".lvl"    
                 bgImage = pygame.image.load("Background/Floor.png").convert()
                 bgRect = bgImage.get_rect() 
@@ -136,7 +136,7 @@ while True:
                 pPos = [100+tileSize+tileSize/2+5, player.rect.center[1]]
                 for s in all.sprites():
                     s.kill()
-                level = Level(str(levx)+str(levy)+".lvl", tileSize) 
+                level = Level(str(levy)+str(levx)+".lvl", tileSize) 
                 print str(levx)+str(levy)+".lvl"    
                 bgImage = pygame.image.load("Background/Floor.png").convert()
                 bgRect = bgImage.get_rect() 
@@ -154,7 +154,7 @@ while True:
                 pPos = [100+tileSize+tileSize/2+5, player.rect.center[1]]
                 for s in all.sprites():
                     s.kill()
-                level = Level(str(levx)+str(levy)+".lvl", tileSize) 
+                level = Level(str(levy)+str(levx)+".lvl", tileSize) 
                 print str(levx)+str(levy)+".lvl"    
                 bgImage = pygame.image.load("Background/Floor.png").convert()
                 bgRect = bgImage.get_rect() 
@@ -172,7 +172,7 @@ while True:
                 pPos = [100+tileSize+tileSize/2+5, player.rect.center[1]]
                 for s in all.sprites():
                     s.kill()
-                level = Level(str(levx)+str(levy)+".lvl", tileSize) 
+                level = Level(str(levy)+str(levx)+".lvl", tileSize) 
                 print str(levx)+str(levy)+".lvl"    
                 bgImage = pygame.image.load("Background/Floor.png").convert()
                 bgRect = bgImage.get_rect() 
