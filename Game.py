@@ -11,15 +11,16 @@ from specialmeatball import *
 #from spicymeatball import *
 from Wall import*  
 from Timer import*
+from Score import*
 #from Spoonghettimonster import *
 #from LevelIndicator import *
 #from Goal import *
 pygame.init()
 
 clock = pygame.time.Clock()
-
-width = 24*44 
-height = 17*44
+tileSize = 44
+width = 24*tileSize 
+height = 17*tileSize
 size = width, height
 screen = pygame.display.set_mode(size)
 
@@ -30,12 +31,14 @@ all = pygame.sprite.OrderedUpdates()
 thePlayers = pygame.sprite.Group()
 meatballs = pygame.sprite.Group()
 walls = pygame.sprite.Group()
+levelChangeBlocks = pygame.sprite.Group()
 
 Player.containers = all, thePlayers
 AIPlayer.containers = all, thePlayers
 Meatball.containers = all, meatballs
 Specialmeatball.containers = all, meatballs
 Wall.containers = all, walls
+LevelChangeBlock.containers = all, levelChangeBlocks
 
 
 levx = 1
@@ -43,7 +46,7 @@ levy = 1
 
 
 while True:
-    level = Level(str(levx)+str(levy)+".lvl")     
+    level = Level(str(levx)+str(levy)+".lvl", tileSize)     
     bgImage = pygame.image.load("Background/Floor.png").convert()
     bgRect = bgImage.get_rect() 
     for p in thePlayers.sprites():
@@ -51,6 +54,7 @@ while True:
             player = p
         else:
             player2 = p
+    print levelChangeBlocks.sprites()
     timer = Timer([132, 50])
     score = Score([100, height - 30])
     #score2 = Score([width - 100, height - 30])
@@ -95,18 +99,96 @@ while True:
     
         all.update(size)
         
+        for meatball in meatballs:
+            if player.bounceMeatball(meatball):
+                meatball.kill()
+                score.setValue(player.points)
+       
         playersHitsWalls = pygame.sprite.groupcollide(thePlayers, walls, False, False)
         playersHitsMeatballs = pygame.sprite.groupcollide(thePlayers, meatballs, False, True)
+        playerHitsLevelChangeBlocks = pygame.sprite.spritecollide(player, levelChangeBlocks, False)
         
         for p in playersHitsWalls:
             for wall in playersHitsWalls[p]:
                 p.bounceWall(wall)
-
-        for p in playersHitsMeatballs:
-            for wall in playersHitsMeatballs[p]:
-                print "HIT"
                 
+        for blk in playerHitsLevelChangeBlocks:
+            if blk.kind == 'E':
+                levx += 1
+                pPos = [0+tileSize+tileSize/2+5, player.rect.center[1]]
+                for s in all.sprites():
+                    s.kill()
+                level = Level(str(levx)+str(levy)+".lvl", tileSize) 
+                print str(levx)+str(levy)+".lvl"    
+                bgImage = pygame.image.load("Background/Floor.png").convert()
+                bgRect = bgImage.get_rect() 
+                for p in thePlayers.sprites():
+                    if p.kind == "human":
+                        player = p
+                    else:
+                        player2 = p
+                player = Player(5, pPos)
+                break
+                
+        for blk in playerHitsLevelChangeBlocks:
+            if blk.kind == 'S':
+                levy += 1
+                pPos = [100+tileSize+tileSize/2+5, player.rect.center[1]]
+                for s in all.sprites():
+                    s.kill()
+                level = Level(str(levx)+str(levy)+".lvl", tileSize) 
+                print str(levx)+str(levy)+".lvl"    
+                bgImage = pygame.image.load("Background/Floor.png").convert()
+                bgRect = bgImage.get_rect() 
+                for p in thePlayers.sprites():
+                    if p.kind == "human":
+                        player = p
+                    else:
+                        player2 = p
+                player = Player(5, pPos)
+                break
+                
+        for blk in playerHitsLevelChangeBlocks:
+            if blk.kind == 'W':
+                levx += 1
+                pPos = [100+tileSize+tileSize/2+5, player.rect.center[1]]
+                for s in all.sprites():
+                    s.kill()
+                level = Level(str(levx)+str(levy)+".lvl", tileSize) 
+                print str(levx)+str(levy)+".lvl"    
+                bgImage = pygame.image.load("Background/Floor.png").convert()
+                bgRect = bgImage.get_rect() 
+                for p in thePlayers.sprites():
+                    if p.kind == "human":
+                        player = p
+                    else:
+                        player2 = p
+                player = Player(5, pPos)
+                break
+                
+        for blk in playerHitsLevelChangeBlocks:
+            if blk.kind == 'N':
+                levy += 1
+                pPos = [100+tileSize+tileSize/2+5, player.rect.center[1]]
+                for s in all.sprites():
+                    s.kill()
+                level = Level(str(levx)+str(levy)+".lvl", tileSize) 
+                print str(levx)+str(levy)+".lvl"    
+                bgImage = pygame.image.load("Background/Floor.png").convert()
+                bgRect = bgImage.get_rect() 
+                for p in thePlayers.sprites():
+                    if p.kind == "human":
+                        player = p
+                    else:
+                        player2 = p
+                player = Player(5, pPos)
+                break
+                
+        print r, g, b
         bgColor = r,g,b
+        screen.fill(bgColor)
+        screen.blit(bgImage, bgRect)
+        screen.blit(score.image, score.rect)
         screen.fill(bgColor)
         screen.blit(bgImage, bgRect)
         dirty = all.draw(screen)

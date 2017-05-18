@@ -6,6 +6,7 @@ from ShootingEnemy import *
 from Wall import *
 from Meatball import *
 from specialmeatball import *
+from LevelChangeBlock import *
 
 class Level():
     def __init__(self, levelFile, tileSize=44):
@@ -49,6 +50,11 @@ class Level():
                     Wall([x*self.tileSize + self.tileSize/2,
                                         y*self.tileSize + self.tileSize/2],
                                        self.tileSize)
+                if c == 'E' or c == 'W' or c == 'S' or c == 'N':
+                    LevelChangeBlock([x*self.tileSize + self.tileSize/2,
+                                        y*self.tileSize + self.tileSize/2],
+                                       self.tileSize,
+                                       c)
                                   
                 if c == "b":
                     a =AIPlayer (5,
