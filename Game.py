@@ -11,7 +11,7 @@ from specialmeatball import *
 #from spicymeatball import *
 from Wall import*  
 from Timer import*
-from Score import*
+#from Score import*
 #from Spoonghettimonster import *
 #from LevelIndicator import *
 #from Goal import *
