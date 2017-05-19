@@ -115,7 +115,7 @@ while True:
         for blk in playerHitsLevelChangeBlocks:
             if blk.kind == 'E':
                 levx += 1
-                pPos = [0+tileSize+tileSize/2+5, player.rect.center[1]]
+                pPos = [70+tileSize+tileSize/2+5, player.rect.center[1]]
                 for s in all.sprites():
                     s.kill()
                 level = Level(str(levy)+str(levx)+".lvl", tileSize) 
@@ -133,7 +133,7 @@ while True:
         for blk in playerHitsLevelChangeBlocks:
             if blk.kind == 'S':
                 levy += 1
-                pPos = [100+tileSize+tileSize/2+5, player.rect.center[1]]
+                pPos = [50+tileSize+tileSize/2+10, player.rect.center[1]]
                 for s in all.sprites():
                     s.kill()
                 level = Level(str(levy)+str(levx)+".lvl", tileSize) 
@@ -150,7 +150,7 @@ while True:
                 
         for blk in playerHitsLevelChangeBlocks:
             if blk.kind == 'W':
-                levx += 1
+                levx += -1
                 pPos = [100+tileSize+tileSize/2+5, player.rect.center[1]]
                 for s in all.sprites():
                     s.kill()
@@ -168,7 +168,7 @@ while True:
                 
         for blk in playerHitsLevelChangeBlocks:
             if blk.kind == 'N':
-                levy += 1
+                levy += -1
                 pPos = [100+tileSize+tileSize/2+5, player.rect.center[1]]
                 for s in all.sprites():
                     s.kill()
