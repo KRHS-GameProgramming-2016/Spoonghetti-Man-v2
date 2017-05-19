@@ -6,7 +6,7 @@ class LevelIndicator():
         self.image = pygame.image.load("rsc/TextBG.png")
         
         #http://www.1001fonts.com/westmeath-font.html
-        self.font = pygame.font.Font("rsc/Fonts/comic sans/comic.ttf", 50)
+        self.font = pygame.font.Font("rsc/Fonts/Courier font/coure.fon", 50)
         self.image.blit(self.font.render("Level: " + str(self.value), True, (255,255,255)), [30,0])
         self.rect = self.image.get_rect(topright = pos)
         print pos, self.rect
