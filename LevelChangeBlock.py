@@ -4,7 +4,7 @@ class LevelChangeBlock(pygame.sprite.Sprite):
     def __init__(self, pos, size, kind):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.size = size
-        self.image = pygame.image.load("rsc/wall/Wallys.png")
+        self.image = pygame.image.load("rsc/wall/door2.png")
         
         if size:
             self.image = pygame.transform.scale(self.image, [size, size])
