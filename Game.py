@@ -133,7 +133,7 @@ while True:
         for blk in playerHitsLevelChangeBlocks:
             if blk.kind == 'S':
                 levy += 1
-                pPos = [100+tileSize+tileSize/2+, player.rect.center[1]]
+                pPos = [100+tileSize+tileSize/2+5, player.rect.center[1]]
                 for s in all.sprites():
                     s.kill()
                 level = Level(str(levy)+str(levx)+".lvl", tileSize) 
