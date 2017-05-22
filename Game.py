@@ -15,11 +15,16 @@ from Score import*
 #from Spoonghettimonster import *
 #from LevelIndicator import *
 #from Goal import *
+
+# set window position from: http://pygame.org/wiki/SettingWindowPosition
+import os
+os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (100,15)
+
 pygame.init()
 
 clock = pygame.time.Clock()
 tileSize = 44
-width = 24*tileSize 
+width = 23*tileSize 
 height = 17*tileSize
 size = width, height
 screen = pygame.display.set_mode(size)
@@ -115,7 +120,9 @@ while True:
         for blk in playerHitsLevelChangeBlocks:
             if blk.kind == 'E':
                 levx += 1
-                pPos = [70+tileSize+tileSize/2+5, player.rect.center[1]]
+                px = tileSize+tileSize/2+25
+                py = player.rect.center[1]
+                pPos = [px, py]
                 for s in all.sprites():
                     s.kill()
                 level = Level(str(levy)+str(levx)+".lvl", tileSize) 
@@ -130,10 +137,11 @@ while True:
                 player = Player(5, pPos)
                 break
                 
-        for blk in playerHitsLevelChangeBlocks:
             if blk.kind == 'S':
                 levy += 1
-                pPos = [100+tileSize+tileSize/2+, player.rect.center[1]]
+                px = player.rect.center[0]
+                py = tileSize+tileSize/2+25
+                pPos = [px, py]
                 for s in all.sprites():
                     s.kill()
                 level = Level(str(levy)+str(levx)+".lvl", tileSize) 
@@ -148,10 +156,11 @@ while True:
                 player = Player(5, pPos)
                 break
                 
-        for blk in playerHitsLevelChangeBlocks:
             if blk.kind == 'W':
-                levx += 1
-                pPos = [100+tileSize+tileSize/2+5, player.rect.center[1]]
+                levx -= 1
+                px = width-tileSize-tileSize/2-25
+                py = player.rect.center[1]
+                pPos = [px, py]
                 for s in all.sprites():
                     s.kill()
                 level = Level(str(levy)+str(levx)+".lvl", tileSize) 
@@ -166,10 +175,11 @@ while True:
                 player = Player(5, pPos)
                 break
                 
-        for blk in playerHitsLevelChangeBlocks:
             if blk.kind == 'N':
-                levy += 1
-                pPos = [100+tileSize+tileSize/2+5, player.rect.center[1]]
+                levy -= 1
+                px = player.rect.center[0]
+                py = height-tileSize-tileSize/2-25
+                pPos = [px, py]                
                 for s in all.sprites():
                     s.kill()
                 level = Level(str(levy)+str(levx)+".lvl", tileSize) 
