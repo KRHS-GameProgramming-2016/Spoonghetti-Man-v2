@@ -3,7 +3,7 @@ import pygame, sys, math
 class Player(pygame.sprite.Sprite):
     def __init__(self, maxSpeed =5 , pos=[10,10]):
         pygame.sprite.Sprite.__init__(self, self.containers)
-        size = [60,60]
+        size = [61,61]
         self.maxSpeed = maxSpeed     
         self.images = [pygame.transform.scale(pygame.image.load("rsc/ball/Spoonerk.png"), size),
                        #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(2).png"), size),
