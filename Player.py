@@ -6,6 +6,10 @@ class Player(pygame.sprite.Sprite):
         size = [61,61]
         self.maxSpeed = maxSpeed     
         self.images = [pygame.transform.scale(pygame.image.load("rsc/ball/Spoonerk.png"), size),
+                       pygame.transform.scale(pygame.image.load("rsc/ball/Spoonerk(1).png"), size),
+                       pygame.transform.scale(pygame.image.load("rsc/ball/Spoonerk(2).png"), size),
+                       pygame.transform.scale(pygame.image.load("rsc/ball/Spoonerk(3).png"), size),
+                       pygame.transform.scale(pygame.image.load("rsc/ball/Spoonerk(4).png"), size),
                        #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(2).png"), size),
                        #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(3.1).png"), size),
                        #pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerF(4).png"), size),
