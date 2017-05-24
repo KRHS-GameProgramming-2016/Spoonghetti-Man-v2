@@ -34,6 +34,7 @@ class Player(pygame.sprite.Sprite):
         self.animationTimerMax = .001 * 100 #seconds * 60 fps
         self.points = 0
         self.kind = "human"
+        self.living = True
         
     def move(self):
         self.didBounceX = False

@@ -46,25 +46,22 @@ Wall.containers = all, walls
 LevelChangeBlock.containers = all, levelChangeBlocks
 
 
-levx = 1
-levy = 1
-
-
 while True:
+    levx = 1
+    levy = 1
     level = Level(str(levy)+str(levx)+".lvl", tileSize)     
     bgImage = pygame.image.load("Background/Floor.png").convert()
     bgRect = bgImage.get_rect() 
     for p in thePlayers.sprites():
-        if p.kind == "human":
-            player = p
-        else:
-            player2 = p
+        player2 = p
+    player = Player (5, [4*tileSize + tileSize/2,
+                         6*tileSize + tileSize/2])
     print levelChangeBlocks.sprites()
     timer = Timer([132, 50])
     score = Score([100, height - 30])
     #score2 = Score([width - 100, height - 30])
     #levelIndicator = LevelIndicator([width-10, 16], lev)
-    while True:
+    while player.living:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
             if event.type == pygame.KEYDOWN:
@@ -111,11 +108,17 @@ while True:
        
         playersHitsWalls = pygame.sprite.groupcollide(thePlayers, walls, False, False)
         playersHitsMeatballs = pygame.sprite.groupcollide(thePlayers, meatballs, False, True)
+        playersHitsPlayers = pygame.sprite.groupcollide(thePlayers, thePlayers, False, False)
         playerHitsLevelChangeBlocks = pygame.sprite.spritecollide(player, levelChangeBlocks, False)
         
         for p in playersHitsWalls:
             for wall in playersHitsWalls[p]:
                 p.bounceWall(wall)
+        
+        for p1 in playersHitsPlayers:
+            for p2 in playersHitsPlayers[p1]:
+                if p1 != p2:
+                    p1.living = False
                 
         for blk in playerHitsLevelChangeBlocks:
             if blk.kind == 'E':
@@ -205,3 +208,5 @@ while True:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
+    for s in all.sprites():
+        s.kill()
