@@ -31,7 +31,7 @@ class Enemy():
         self.blinkFrame = 0
 
         self.animationTimer = 0
-        self.animationTimerMax = .3 * 60 #seconds * 60 fps
+        self.animationTimerMax = .05 * 60 #seconds * 60 fps
 
         self.images = self.imagesRight
         self.image = self.images[self.frame]
