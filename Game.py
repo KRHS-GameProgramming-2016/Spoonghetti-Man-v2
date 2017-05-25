@@ -7,6 +7,7 @@ from Level import *
 from Player import *
 #from Title import *
 from AIPlayer import *
+from differentai import *
 from specialmeatball import *
 #from spicymeatball import *
 from Wall import*  
