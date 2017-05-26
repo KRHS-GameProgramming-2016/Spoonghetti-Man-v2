@@ -5,7 +5,26 @@ class Differentai(Player):
     def __init__(self, maxSpeed =7 , pos=[10,10]):
         Player.__init__(self, maxSpeed, pos)
         size = [65,65]
-        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton.jpg"), size),
+        self.maxSpeed = maxSpeed     
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton2.png"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton21.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton22.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton23.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton24.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton25.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton26.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton27.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton28.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton29.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton210.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton211.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton212.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton213.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton214.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton215.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton216.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton217.JPEG"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/Spooky scary skeleton218.JPEG"), size),
                       ]
         self.frame = 0
         self.image = self.images[self.frame]
