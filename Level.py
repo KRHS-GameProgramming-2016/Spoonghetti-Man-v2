@@ -58,6 +58,12 @@ class Level():
                                        self.tileSize,
                                        c)
                                   
+                if c == "c": 
+                    Chest([x*self.tileSize + self.tileSize/2,
+                                           y*self.tileSize + self.tileSize/2],
+                                          self.tileSize)
+                    
+                                  
                 if c == "b":
                     a =AIPlayer (5,
                                         [x*self.tileSize + self.tileSize/2,
