@@ -1,6 +1,7 @@
 import pygame, sys, math, random
 from Meatball import *
 from Level import *
+#from Chest import*
 #from Enemy import *
 #from ShootingEnemy import *
 #from LevelIndicator import *
@@ -13,9 +14,8 @@ from specialmeatball import *
 from Wall import*  
 from Timer import*
 from Score import*
-#from Spoonghettimonster import *
-#from LevelIndicator import *
-#from Goal import *
+
+
 
 # set window position from: http://pygame.org/wiki/SettingWindowPosition
 import os
@@ -38,6 +38,7 @@ thePlayers = pygame.sprite.Group()
 meatballs = pygame.sprite.Group()
 walls = pygame.sprite.Group()
 levelChangeBlocks = pygame.sprite.Group()
+Chest = pygame.sprite.Group()
 
 Player.containers = all, thePlayers
 AIPlayer.containers = all, thePlayers
@@ -45,6 +46,7 @@ Meatball.containers = all, meatballs
 Specialmeatball.containers = all, meatballs
 Wall.containers = all, walls
 LevelChangeBlock.containers = all, levelChangeBlocks
+Chest.containers = all, levelChangeBlocks
 
 
 while True:
@@ -111,6 +113,7 @@ while True:
         playersHitsMeatballs = pygame.sprite.groupcollide(thePlayers, meatballs, False, True)
         playersHitsPlayers = pygame.sprite.groupcollide(thePlayers, thePlayers, False, False)
         playerHitsLevelChangeBlocks = pygame.sprite.spritecollide(player, levelChangeBlocks, False)
+        playerHitsChest = pygame.sprite.spritecollide(player, Chest, False)
         
         for p in playersHitsWalls:
             for wall in playersHitsWalls[p]:
@@ -121,6 +124,18 @@ while True:
                 if p1 != p2:
                     p1.living = False
                 
+        for blk in Chest:
+            if blk.kind == 'c':
+                bgImage = pygame.image.load("rsc/Chest.png").convert()
+                bgRect = bgImage.get_rect() 
+                for p in thePlayers.sprites():
+                    if p.kind == "human":
+                        player = p
+                    else:
+                        player2 = p
+                player = Player(5, pPos)
+                break
+       
         for blk in playerHitsLevelChangeBlocks:
             if blk.kind == 'E':
                 levx += 1
