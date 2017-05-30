@@ -8,6 +8,7 @@ from Wall import *
 from Meatball import *
 from specialmeatball import *
 from LevelChangeBlock import *
+from catbread import *
 
 class Level():
     def __init__(self, levelFile, tileSize=44):
@@ -90,6 +91,13 @@ class Level():
                     Differentai(5,
                                         [x*self.tileSize + self.tileSize/2,
                                          y*self.tileSize + self.tileSize/2])
+                                         
+                if c == "c":
+                    Catbread(5,
+                                        [x*self.tileSize + self.tileSize/2,
+                                         y*self.tileSize + self.tileSize/2])
+                                         
+                                         
 
                 if c == "s":
                     Specialmeatball([x*self.tileSize + self.tileSize/2,
