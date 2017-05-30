@@ -2,7 +2,7 @@ import pygame, sys, math, random
 from Player import *
 
 class Catbread(Player):
-    def __init__(self, maxSpeed =7 , pos=[10,10]):
+    def __init__(self, maxSpeed =3 , pos=[10,10]):
         Player.__init__(self, maxSpeed, pos)
         size = [65,65]
         self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/cat bread.png"), size),
