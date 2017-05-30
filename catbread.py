@@ -1,36 +1,18 @@
 import pygame, sys, math, random
 from Player import *
 
-class AIPlayer(Player):
+class Catbread(Player):
     def __init__(self, maxSpeed =3 , pos=[10,10]):
         Player.__init__(self, maxSpeed, pos)
         size = [65,65]
-        self.images = [pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(11).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(12).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(13).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(14).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(15).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(14).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(13).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(12).png"), size),
-                       pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(11).png"), size),
+        self.images = [pygame.transform.scale(pygame.image.load("rsc/enemy pictures/cat bread.png"), size),
                       ]
         self.frame = 0
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect(center = self.rect.center)
         self.maxFrame = len(self.images) - 1
         self.goRandomDirection()
-        self.speedx = 0
-        self.speedy = 0
-        self.speed = [self.speedx, self.speedy]
-        self.radius = self.rect.width/2 -1
-        self.maxFrame = len(self.images) - 1
-        self.animationTimer = 0
-        self.animationTimerMax = .1 * 100 #seconds * 60 fps
-        self.points = 0
-        self.living = True
         self.kind = "AI"
-                     
         
         
     def update(self, size):
@@ -73,3 +55,4 @@ class AIPlayer(Player):
             self.go(ys[random.randint(0,3)])
             self.speed = [self.speedx, self.speedy]
         
+
