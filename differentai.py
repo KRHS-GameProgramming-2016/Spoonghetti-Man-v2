@@ -31,6 +31,15 @@ class Differentai(Player):
         self.rect = self.image.get_rect(center = self.rect.center)
         self.maxFrame = len(self.images) - 1
         self.goRandomDirection()
+        self.speedx = 0
+        self.speedy = 0
+        self.speed = [self.speedx, self.speedy]
+        self.radius = self.rect.width/2 -1
+        self.maxFrame = len(self.images) - 1
+        self.animationTimer = 0
+        self.animationTimerMax = .01 * 100 #seconds * 60 fps
+        self.points = 0
+        self.living = True
         self.kind = "AI"
         
         
