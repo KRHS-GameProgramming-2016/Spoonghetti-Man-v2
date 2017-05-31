@@ -39,7 +39,7 @@ thePlayers = pygame.sprite.Group()
 meatballs = pygame.sprite.Group()
 walls = pygame.sprite.Group()
 levelChangeBlocks = pygame.sprite.Group()
-Chest = pygame.sprite.Group()
+chests = pygame.sprite.Group()
 
 Player.containers = all, thePlayers
 AIPlayer.containers = all, thePlayers
@@ -47,7 +47,7 @@ Meatball.containers = all, meatballs
 Specialmeatball.containers = all, meatballs
 Wall.containers = all, walls
 LevelChangeBlock.containers = all, levelChangeBlocks
-Chest.containers = all, levelChangeBlocks
+Chest.containers = all, chests
 
 
 while True:
@@ -114,7 +114,7 @@ while True:
         playersHitsMeatballs = pygame.sprite.groupcollide(thePlayers, meatballs, False, True)
         playersHitsPlayers = pygame.sprite.groupcollide(thePlayers, thePlayers, False, False)
         playerHitsLevelChangeBlocks = pygame.sprite.spritecollide(player, levelChangeBlocks, False)
-        playerHitsChest = pygame.sprite.spritecollide(player, Chest, False)
+        playerHitsChests = pygame.sprite.spritecollide(player, chests, False)
         
         for p in playersHitsWalls:
             for wall in playersHitsWalls[p]:
@@ -125,9 +125,17 @@ while True:
                 if p1 != p2:
                     p1.living = False
                 
-        for blk in Chest:
-            if blk.kind == 'c':
-                bgImage = pygame.image.load("rsc/Chest.png").convert()
+        for chest in playerHitsChests:
+            if chest.kind == 'd':
+                levx += 1
+                px = tileSize+tileSize/2+25
+                py = player.rect.center[1]
+                pPos = [px, py]
+                for s in all.sprites():
+                    s.kill()
+                level = Level(str(levy)+str(levx)+".lvl", tileSize) 
+                print str(levx)+str(levy)+".lvl"    
+                bgImage = pygame.image.load("rsc/chest.png").convert()
                 bgRect = bgImage.get_rect() 
                 for p in thePlayers.sprites():
                     if p.kind == "human":
@@ -136,6 +144,7 @@ while True:
                         player2 = p
                 player = Player(5, pPos)
                 break
+                
        
         for blk in playerHitsLevelChangeBlocks:
             if blk.kind == 'E':

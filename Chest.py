@@ -1,6 +1,6 @@
 import pygame, sys, math, random
 
-class LevelChangeBlock(pygame.sprite.Sprite):
+class Chest(pygame.sprite.Sprite):
     def __init__(self, pos, size, kind):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.size = size

@@ -9,6 +9,7 @@ from Meatball import *
 from specialmeatball import *
 from LevelChangeBlock import *
 from catbread import *
+from Chest import *
 
 class Level():
     def __init__(self, levelFile, tileSize=44):
@@ -58,10 +59,11 @@ class Level():
                                        self.tileSize,
                                        c)
                                   
-                if c == "c": 
+                if c == "d": 
                     Chest([x*self.tileSize + self.tileSize/2,
-                                           y*self.tileSize + self.tileSize/2],
-                                          self.tileSize)
+                                        y*self.tileSize + self.tileSize/2],
+                                       self.tileSize,
+                                       c)
                     
                                   
                 if c == "b":
