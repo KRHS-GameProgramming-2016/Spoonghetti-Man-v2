@@ -1,7 +1,7 @@
 import pygame, sys, math, random
 from Meatball import *
 from Level import *
-#from Chest import*
+from Chest import*
 #from Enemy import *
 #from ShootingEnemy import *
 #from LevelIndicator import *
