@@ -2,9 +2,9 @@ import pygame, sys, math, random
 from Player import *
 
 class AIPlayer(Player):
-    def __init__(self, maxSpeed =3 , pos=[10,10]):
+    def __init__(self, maxSpeed =3 , pos=[5,5]):
         Player.__init__(self, maxSpeed, pos)
-        size = [80,80]
+        size = [100,100]
         self.images = [pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(11).png"), size),
                        pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(12).png"), size),
                        pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(13).png"), size),
