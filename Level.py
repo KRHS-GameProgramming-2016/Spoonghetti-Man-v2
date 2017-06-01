@@ -58,7 +58,7 @@ class Level():
                                        self.tileSize,
                                        c)
                                   
-                if c == "c": 
+                if c == "d": 
                     Chest([x*self.tileSize + self.tileSize/2,
                                            y*self.tileSize + self.tileSize/2],
                                           self.tileSize)
