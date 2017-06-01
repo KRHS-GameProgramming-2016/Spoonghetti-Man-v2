@@ -52,7 +52,8 @@ Chest.containers = all, chests
 while True:
     levx = 1
     levy = 1
-    level = Level(str(levy)+str(levx)+".lvl", tileSize)     
+    world = 1
+    level = Level(str(world)+"."+str(levy)+str(levx)+".lvl", tileSize)     
     bgImage = pygame.image.load("Background/Floor.png").convert()
     bgRect = bgImage.get_rect() 
     for p in thePlayers.sprites():
@@ -126,15 +127,17 @@ while True:
                 
         for chest in playerHitsChests:
             if chest.kind == 'd':
-                levx += 1
+                world += 2
+                levx = 1
+                levy = 1
                 px = tileSize+tileSize/2+25
                 py = player.rect.center[1]
                 pPos = [px, py]
                 for s in all.sprites():
                     s.kill()
-                level = Level(str(levy)+str(levx)+".lvl", tileSize) 
+                level = Level(str(world)+"."+str(levy)+str(levx)+".lvl", tileSize) 
                 print str(levx)+str(levy)+".lvl"    
-                bgImage = pygame.image.load("rsc/Chest2.png").convert()
+                bgImage = pygame.image.load("rsc/Chest.png").convert()
                 bgRect = bgImage.get_rect() 
                 for p in thePlayers.sprites():
                     if p.kind == "human":
@@ -153,7 +156,7 @@ while True:
                 pPos = [px, py]
                 for s in all.sprites():
                     s.kill()
-                level = Level(str(levy)+str(levx)+".lvl", tileSize) 
+                level = Level(str(world)+"."+str(levy)+str(levx)+".lvl", tileSize) 
                 print str(levx)+str(levy)+".lvl"    
                 bgImage = pygame.image.load("Background/Floor.png").convert()
                 bgRect = bgImage.get_rect() 
