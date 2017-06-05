@@ -127,7 +127,7 @@ while True:
                 
         for chest in playerHitsChests:
             if chest.kind == 'd':
-                world += 2
+                world = 3     
                 levx = 1
                 levy = 1
                 px = tileSize+tileSize/2+25
