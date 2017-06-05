@@ -175,7 +175,7 @@ while True:
                 pPos = [px, py]
                 for s in all.sprites():
                     s.kill()
-                level = Level(str(levy)+str(levx)+".lvl", tileSize) 
+                level = Level(str(world)+"."+str(levy)+str(levx)+".lvl", tileSize) 
                 print str(levx)+str(levy)+".lvl"    
                 bgImage = pygame.image.load("Background/Floor.png").convert()
                 bgRect = bgImage.get_rect() 
@@ -194,7 +194,7 @@ while True:
                 pPos = [px, py]
                 for s in all.sprites():
                     s.kill()
-                level = Level(str(levy)+str(levx)+".lvl", tileSize) 
+                level = Level(str(world)+"."+str(levy)+str(levx)+".lvl", tileSize) 
                 print str(levx)+str(levy)+".lvl"    
                 bgImage = pygame.image.load("Background/Floor.png").convert()
                 bgRect = bgImage.get_rect() 
@@ -213,7 +213,7 @@ while True:
                 pPos = [px, py]                
                 for s in all.sprites():
                     s.kill()
-                level = Level(str(levy)+str(levx)+".lvl", tileSize) 
+                level = Level(str(world)+"."+str(levy)+str(levx)+".lvl", tileSize) 
                 print str(levx)+str(levy)+".lvl"    
                 bgImage = pygame.image.load("Background/Floor.png").convert()
                 bgRect = bgImage.get_rect() 
