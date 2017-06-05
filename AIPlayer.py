@@ -4,7 +4,7 @@ from Player import *
 class AIPlayer(Player):
     def __init__(self, maxSpeed =3 , pos=[5,5]):
         Player.__init__(self, maxSpeed, pos)
-        size = [100,100]
+        size = [80,80]
         self.images = [pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(11).png"), size),
                        pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(12).png"), size),
                        pygame.transform.scale(pygame.image.load("rsc/ball/SpoonerM(13).png"), size),
