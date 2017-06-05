@@ -137,7 +137,7 @@ while True:
                     s.kill()
                 level = Level(str(world)+"."+str(levy)+str(levx)+".lvl", tileSize) 
                 print str(levx)+str(levy)+".lvl"    
-                bgImage = pygame.image.load("rsc/Chest.png").convert()
+                #bgImage = pygame.image.load("rsc/Chest.png").convert()
                 bgRect = bgImage.get_rect() 
                 for p in thePlayers.sprites():
                     if p.kind == "human":
