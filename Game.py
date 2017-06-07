@@ -109,6 +109,7 @@ while True:
             if player.bounceMeatball(meatball):
                 meatball.kill()
                 score.setValue(player.points)
+                
        
         playersHitsWalls = pygame.sprite.groupcollide(thePlayers, walls, False, False)
         playersHitsMeatballs = pygame.sprite.groupcollide(thePlayers, meatballs, False, True)
@@ -122,9 +123,7 @@ while True:
                 p.bounceWall(wall)
                 
         for bullet in playersHitsBullets:
-            player.bounceBullet(bullet)
-            for s in all.sprites():
-                    s.kill()
+            player.living = False
         
         for p1 in playersHitsPlayers:
             for p2 in playersHitsPlayers[p1]:
@@ -133,7 +132,7 @@ while True:
                 
         for chest in playerHitsChests:
             if chest.kind == 'd':
-                world = 3     
+                world = 2     
                 levx = 1
                 levy = 1
                 px = tileSize+tileSize/2+25
