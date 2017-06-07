@@ -1,5 +1,7 @@
 import pygame, sys, math, random
 from Player import *
+from Bullet import *
+
 
 class Differentai(Player):
     def __init__(self, maxSpeed =3 , pos=[10,10]):
@@ -37,11 +39,14 @@ class Differentai(Player):
         self.points = 0
         self.living = True
         self.kind = "AI"
+        self.facing = "up"
         
         
     def update(self, size):
         if random.randint(0,75) == 0:
             self.goRandomDirection()
+        if random.randint(0,30) == 0:
+            Bullet(5, self.speed, self.rect.center)
         Player.update(self, size)
             
     def PlayerCollide(self, other):

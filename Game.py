@@ -2,9 +2,6 @@ import pygame, sys, math, random
 from Meatball import *
 from Level import *
 from Chest import*
-#from Enemy import *
-#from ShootingEnemy import *
-#from LevelIndicator import *
 from Player import *
 from AIPlayer import *
 from differentai import *
@@ -14,6 +11,7 @@ from catbread import *
 from Wall import*  
 from Timer import*
 from Score import*
+from Bullet import*
 
 
 
@@ -39,6 +37,7 @@ meatballs = pygame.sprite.Group()
 walls = pygame.sprite.Group()
 levelChangeBlocks = pygame.sprite.Group()
 chests = pygame.sprite.Group()
+bullets = pygame.sprite.Group()
 
 Player.containers = all, thePlayers
 AIPlayer.containers = all, thePlayers
@@ -47,6 +46,7 @@ Specialmeatball.containers = all, meatballs
 Wall.containers = all, walls
 LevelChangeBlock.containers = all, levelChangeBlocks
 Chest.containers = all, chests
+Bullet.containers = all, bullets
 
 
 while True:
@@ -115,10 +115,14 @@ while True:
         playersHitsPlayers = pygame.sprite.groupcollide(thePlayers, thePlayers, False, False)
         playerHitsLevelChangeBlocks = pygame.sprite.spritecollide(player, levelChangeBlocks, False)
         playerHitsChests = pygame.sprite.spritecollide(player, chests, False)
+        playerHitsBullets = pygame.sprite.spritecollide(player, bullets, False)
         
         for p in playersHitsWalls:
             for wall in playersHitsWalls[p]:
                 p.bounceWall(wall)
+                
+        for bullet in playersHitsBullets:
+            player.bounceBullet(bullet)
         
         for p1 in playersHitsPlayers:
             for p2 in playersHitsPlayers[p1]:
