@@ -115,7 +115,7 @@ while True:
         playersHitsPlayers = pygame.sprite.groupcollide(thePlayers, thePlayers, False, False)
         playerHitsLevelChangeBlocks = pygame.sprite.spritecollide(player, levelChangeBlocks, False)
         playerHitsChests = pygame.sprite.spritecollide(player, chests, False)
-        playerHitsBullets = pygame.sprite.spritecollide(player, bullets, False)
+        playersHitsBullets = pygame.sprite.spritecollide(player, bullets, True)
         
         for p in playersHitsWalls:
             for wall in playersHitsWalls[p]:
