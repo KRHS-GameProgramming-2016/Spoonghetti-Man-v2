@@ -212,7 +212,7 @@ while True:
                 break
                 
             if blk.kind == 'N':
-                levy -= 1
+                levy += 1
                 px = player.rect.center[0]
                 py = height-tileSize-tileSize/2-25
                 pPos = [px, py]                
