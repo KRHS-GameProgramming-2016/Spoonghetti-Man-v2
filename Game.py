@@ -123,6 +123,8 @@ while True:
                 
         for bullet in playersHitsBullets:
             player.bounceBullet(bullet)
+                for s in all.sprites():
+                    s.kill()
         
         for p1 in playersHitsPlayers:
             for p2 in playersHitsPlayers[p1]:
