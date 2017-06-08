@@ -252,5 +252,9 @@ while True:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
+    gameOver = True
     for s in all.sprites():
         s.kill()
+    while gameOver:
+    bgImage = pygame.image.load("Background/Floor.png").convert()
+    bgRect = bgImage.get_rect()    
