@@ -5,7 +5,7 @@ class Bullet(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self, self.containers)
         size = [20,20]
         self.maxSpeed = maxSpeed     
-        self.image = pygame.transform.scale(pygame.image.load("rsc/SHOOT.png"), size)
+        self.image = pygame.transform.scale(pygame.image.load("rsc/SHOOT1.png"), size)
         self.rect = self.image.get_rect(center = pos)
         
         if shooterSpeed[0] > 0:
