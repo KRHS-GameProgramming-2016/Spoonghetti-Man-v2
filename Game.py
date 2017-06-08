@@ -117,6 +117,7 @@ while True:
         playerHitsLevelChangeBlocks = pygame.sprite.spritecollide(player, levelChangeBlocks, False)
         playerHitsChests = pygame.sprite.spritecollide(player, chests, False)
         playersHitsBullets = pygame.sprite.spritecollide(player, bullets, False)
+        bulletsHitsWalls = pygame.sprite.groupcollide(bullets, walls, True, False)
         
         for p in playersHitsWalls:
             for wall in playersHitsWalls[p]:
@@ -212,13 +213,13 @@ while True:
                 break
                 
             if blk.kind == 'N':
-                levy += 1
+                levy -= 1
                 px = player.rect.center[0]
                 py = height-tileSize-tileSize/2-25
                 pPos = [px, py]                
                 for s in all.sprites():
                     s.kill()
-                level = Level(str(levy)+str(levx)+".lvl", tileSize) 
+                level = Level(str(world)+"."+str(levy)+str(levx)+".lvl", tileSize) 
                 print str(levx)+str(levy)+".lvl"    
                 bgImage = pygame.image.load("Background/Floor.png").convert()
                 bgRect = bgImage.get_rect() 

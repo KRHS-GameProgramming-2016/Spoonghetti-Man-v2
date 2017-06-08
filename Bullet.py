@@ -23,6 +23,8 @@ class Bullet(pygame.sprite.Sprite):
             self.speedy = 0
             
         self.speed = [self.speedx, self.speedy]
+        if self.speed == [0,0] :
+            self.kill()
         self.radius = self.rect.width/2 -1
         
     def move(self):
