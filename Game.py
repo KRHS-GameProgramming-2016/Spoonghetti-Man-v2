@@ -34,6 +34,7 @@ bgColor = r,g,b = 0, 0, 0
 all = pygame.sprite.OrderedUpdates()
 thePlayers = pygame.sprite.Group()
 meatballs = pygame.sprite.Group()
+HUD = pygame.sprite.Group()
 walls = pygame.sprite.Group()
 levelChangeBlocks = pygame.sprite.Group()
 chests = pygame.sprite.Group()
@@ -47,6 +48,7 @@ Wall.containers = all, walls
 LevelChangeBlock.containers = all, levelChangeBlocks
 Chest.containers = all, chests
 Bullet.containers = all, bullets
+Score.containers = all, HUD
 
 
 while True:
@@ -123,13 +125,21 @@ while True:
             for wall in playersHitsWalls[p]:
                 p.bounceWall(wall)
                 
+        for meatball in meatballs:
+            if player.bounceMeatball(meatball):
+                meatball.kill()
+                score.setValue(player.points)
+            if player2.bounceMeatball(meatball):
+                score2.setValue(player2.points)
+                meatball.kill()
+                
         for bullet in playersHitsBullets:
             player.living = False
         
         for p1 in playersHitsPlayers:
             for p2 in playersHitsPlayers[p1]:
                 if p1 != p2:
-                    p1.living = False
+                    p1.living = False        
                 
         for chest in playerHitsChests:
             if chest.kind == 'd':
