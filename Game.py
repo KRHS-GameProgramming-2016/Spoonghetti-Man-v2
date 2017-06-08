@@ -256,5 +256,5 @@ while True:
     for s in all.sprites():
         s.kill()
     while gameOver:
-    bgImage = pygame.image.load("Background/Floor.png").convert()
+    bgImage = pygame.image.load("rsc/levels/star trek.jpg").convert()
     bgRect = bgImage.get_rect()    
