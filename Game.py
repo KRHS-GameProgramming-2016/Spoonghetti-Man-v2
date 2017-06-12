@@ -255,9 +255,6 @@ while True:
     gameOver = True
     for s in all.sprites():
         s.kill()
-    bgImage = pygame.image.load("Background/Floor.png").convert()
-    bgRect = bgImage.get_rect()    
-    
-    #while gameOver:
-    #bgImage = pygame.image.load("rsc/levels/star trek.jpg").convert()
-    #bgRect = bgImage.get_rect() 
+    while gameOver:
+        bgImage = pygame.image.load("Background/Floor.png").convert()
+        bgRect = bgImage.get_rect()    
